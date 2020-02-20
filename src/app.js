@@ -6,7 +6,11 @@ const app = express();
 const hostname = "127.0.0.1";
 const port = 3000;
 
-app.set("port", port)
+app.set("port", port);
+
+app.use((request, response, next) => {
+    response.status(404).send("hello word!");
+})
 
 const server = http.createServer(app);
 
