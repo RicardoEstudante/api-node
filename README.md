@@ -1,2 +1,2 @@
 # api-node
-Criando uma API com Node/Express/Mysql
+Criando uma API com Node/Express/Mysql/Sequelize
