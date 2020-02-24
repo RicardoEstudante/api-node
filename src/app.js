@@ -23,8 +23,13 @@ app.use((error, request, response, next) =>{
     response.status(500).json({ error });
 });
 
-const server = http.createServer(app);
+// sync recebe um objeto como parametro, para pegar o banco de dados de acordo com o model
+sequelize.sync({ force : true }).then(() => {});
 
-server.listen(port, hostname, () => {
-    console.log(`Servidor em execução em http://${hostname}:${port}/`);
-});
+
+// const server = http.createServer(app);
+
+
+// server.listen(port, hostname, () => {
+//     console.log(`Servidor em execução em http://${hostname}:${port}/`);
+// });
