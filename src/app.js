@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require("express");
-const spoilersRoute = require('./routes/spoiler')
+const spoilersRoute = require('./routes/spoiler');
+const sequelize = require('./database/database')
 
 const app = express();
 
@@ -11,10 +12,16 @@ app.set("port", port);
 
 app.use(express.json());
 
-app.use('/api', spoilersRoute)
+app.use('/api', spoilersRoute);
+
 app.use((request, response, next) => {
     response.status(404).send("hello word!");
 })
+
+// erros desconhecidos são renderizados para o cliente atraves de uma arquivo json
+app.use((error, request, response, next) =>{
+    response.status(500).json({ error });
+});
 
 const server = http.createServer(app);
 
