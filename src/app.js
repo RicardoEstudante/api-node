@@ -1,5 +1,6 @@
 const http = require("http");
 const express = require("express");
+const spoilersRoute = require('./routes/spoiler')
 
 const app = express();
 
@@ -8,7 +9,9 @@ const port = 3000;
 
 app.set("port", port);
 
+app.use(express.json());
 
+app.use('/api', spoilersRoute)
 app.use((request, response, next) => {
     response.status(404).send("hello word!");
 })
